@@ -1,0 +1,14 @@
+# Source files with plaintext data — do NOT commit
+_people.source.js
+_build.cjs
+_encrypt.cjs
+_*.b64
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp

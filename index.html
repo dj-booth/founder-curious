@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder Curious — April 16, 2026</title>
+<meta name="description" content="Founder Curious dinner · April 16, 2026 · SOMA">
+<meta property="og:title" content="Founder Curious — April 16, 2026">
+<meta property="og:description" content="a16z founder-curious dinner · SOMA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F8F6F0;--white:#FFFFFF;
+  --gold:#C9A96E;--gold-dark:#A8873F;--gold-light:#E8D5A8;
+  --ink:#1C1917;--ink-light:#44403C;
+  --stone:#78716C;--stone-light:#A8A29E;
+  --border:#E7E5E0;--border-light:#F0EDE8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--cream)}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:500}
+button{font-family:inherit}
+
+.hero{text-align:center;padding:56px 24px 28px}
+.hero-eyebrow{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:5px;color:var(--stone-light);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:42px;font-weight:600;letter-spacing:-0.5px;margin-bottom:8px}
+.hero .subtitle{font-size:14px;color:var(--stone);letter-spacing:0.5px}
+.hero .meta{font-size:12px;color:var(--stone-light);margin-top:8px}
+
+.claim-banner{max-width:620px;margin:8px auto 0;padding:14px 24px;background:linear-gradient(180deg,rgba(201,169,110,0.08),rgba(201,169,110,0.03));border:1px solid var(--gold-light);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:13px;color:var(--ink-light)}
+.claim-banner strong{font-family:'Playfair Display',serif;font-weight:600;color:var(--ink)}
+
+/* Sticky user header once claimed */
+.dash-header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid var(--border-light);background:var(--white);position:sticky;top:0;z-index:50}
+.dash-left{display:flex;align-items:center;gap:12px}
+.dash-av{width:36px;height:36px;border-radius:50%;background:var(--border-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:var(--stone);font-size:14px;font-weight:600;background-size:cover;background-position:center}
+.dash-info{font-size:13px;line-height:1.3}
+.dash-info .label{font-size:10px;text-transform:uppercase;letter-spacing:1.3px;color:var(--stone-light)}
+.dash-info .you{font-family:'Playfair Display',serif;font-weight:600;font-size:15px}
+.dash-right{display:flex;align-items:center;gap:10px}
+.dash-count{font-size:12px;color:var(--stone);padding:6px 12px;border:1px solid var(--border);border-radius:100px;background:var(--cream)}
+.dash-count strong{color:var(--gold-dark);font-weight:600}
+.dash-change{font-size:12px;color:var(--gold-dark);cursor:pointer;background:none;border:1px solid var(--gold-light);padding:6px 14px;border-radius:100px;transition:all 0.2s}
+.dash-change:hover{background:var(--gold-light)}
+
+.section-header{max-width:1080px;margin:32px auto 14px;padding:0 24px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.section-header h2{font-size:22px;font-weight:600}
+.section-header .count{font-size:12px;color:var(--stone-light);letter-spacing:0.5px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:1080px;margin:0 auto;padding:0 24px 80px}
+
+.card{background:var(--white);border-radius:16px;padding:22px 18px 16px;text-align:center;border:2px solid transparent;cursor:pointer;transition:all 0.25s ease;display:flex;flex-direction:column;position:relative;opacity:0;animation:cardSlideUp 0.4s ease forwards}
+.card:hover{border-color:var(--gold-light);transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,169,110,0.12)}
+.card.is-me{border-color:var(--gold);background:linear-gradient(180deg,#FEFCF7,var(--white))}
+.card.is-starred{border-color:var(--gold-light)}
+
+.card-badge{position:absolute;top:10px;left:10px;font-size:9px;text-transform:uppercase;letter-spacing:1.3px;color:var(--gold-dark);background:var(--gold-light);padding:3px 8px;border-radius:100px;font-weight:600;opacity:0.9}
+.card-you-badge{position:absolute;top:10px;right:10px;font-size:9px;text-transform:uppercase;letter-spacing:1.3px;color:var(--white);background:var(--gold);padding:3px 8px;border-radius:100px;font-weight:600}
+
+.star-btn{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:none;background:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--stone-light);z-index:2}
+.star-btn:hover{background:var(--gold-light);color:var(--gold-dark);transform:scale(1.08)}
+.star-btn.active{background:var(--gold);color:var(--white);box-shadow:0 2px 8px rgba(201,169,110,0.35)}
+.star-btn.active:hover{background:var(--gold-dark)}
+.star-btn svg{width:15px;height:15px}
+
+.card-av{width:68px;height:68px;border-radius:50%;margin:14px auto 14px;background:var(--border-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:var(--stone);font-size:22px;font-weight:500;background-size:cover;background-position:center;flex-shrink:0}
+.card .name{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin-bottom:4px;line-height:1.2;padding:0 4px}
+.card .role{font-size:11px;color:var(--stone);line-height:1.35;margin-bottom:auto;min-height:28px;padding:0 4px}
+.card .view-link{font-size:10px;color:var(--stone-light);margin-top:12px;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.card:hover .view-link{color:var(--gold-dark)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,25,23,0.55);display:flex;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(6px);animation:fadeIn 0.2s ease;padding:20px}
+.modal{background:var(--white);border-radius:20px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;position:relative;animation:modalSlideUp 0.3s ease}
+.modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:var(--cream);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--stone);transition:all 0.2s;z-index:10;line-height:1}
+.modal-close:hover{background:var(--border);color:var(--ink)}
+
+.modal-head{text-align:center;padding:38px 28px 22px;border-bottom:1px solid var(--border-light)}
+.modal-av{width:88px;height:88px;border-radius:50%;margin:0 auto 14px;background:var(--border-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;color:var(--stone);font-size:28px;font-weight:500;background-size:cover;background-position:center}
+.modal-head h3{font-size:24px;margin-bottom:4px}
+.modal-head .role{font-size:13px;color:var(--stone)}
+.modal-head .host-tag{display:inline-block;margin-top:8px;font-size:9px;text-transform:uppercase;letter-spacing:1.3px;color:var(--gold-dark);background:var(--gold-light);padding:3px 10px;border-radius:100px;font-weight:600}
+
+.modal-body{padding:22px 28px 24px}
+.modal-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;margin-top:20px}
+.modal-label:first-child{margin-top:0}
+.modal-bio{font-size:13px;line-height:1.7;color:var(--ink-light)}
+.modal-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gold-dark);text-decoration:none;margin-top:14px;padding:8px 14px;border:1px solid var(--gold-light);border-radius:100px;transition:all 0.2s}
+.modal-link:hover{background:var(--gold-light)}
+.modal-link svg{width:13px;height:13px}
+
+.modal-actions{padding:0 28px 28px;display:flex;flex-direction:column;gap:10px}
+.btn-primary{padding:13px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--white);font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.3px;transition:all 0.2s}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 4px 16px rgba(201,169,110,0.3)}
+.btn-secondary{padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--white);color:var(--ink-light);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold-dark)}
+.btn-star{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border:none;border-radius:12px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.3px;transition:all 0.2s;background:linear-gradient(135deg,var(--gold),var(--gold-dark))}
+.btn-star.active{background:linear-gradient(135deg,#78716C,#44403C)}
+.btn-star:hover{transform:scale(1.02)}
+
+.footer{text-align:center;padding:32px 20px 40px;color:var(--stone-light);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.footer span{font-family:'Playfair Display',serif}
+
+/* Gate */
+.gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;animation:fadeIn 0.3s ease}
+.gate-card{max-width:420px;width:100%;text-align:center}
+.gate-title{font-size:48px;font-weight:600;letter-spacing:-0.5px;margin-bottom:8px;margin-top:16px}
+.gate-subtitle{font-size:14px;color:var(--stone);letter-spacing:0.5px;margin-bottom:8px}
+.gate-meta{font-size:12px;color:var(--stone-light);margin-bottom:32px}
+.gate-form{display:flex;gap:10px;flex-direction:column;max-width:320px;margin:0 auto}
+.gate-input{padding:14px 20px;border:1.5px solid var(--border);border-radius:100px;font-size:14px;font-family:inherit;background:var(--white);outline:none;text-align:center;letter-spacing:1px;transition:border-color 0.2s;color:var(--ink)}
+.gate-input:focus{border-color:var(--gold)}
+.gate-btn{padding:14px;border:none;border-radius:100px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--white);font-size:12px;font-weight:600;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:all 0.2s}
+.gate-btn:hover{transform:scale(1.02);box-shadow:0 4px 16px rgba(201,169,110,0.3)}
+.gate-btn:disabled{opacity:0.6;cursor:wait;transform:none;box-shadow:none}
+.gate-error{font-size:12px;color:#B91C1C;margin-top:14px;height:16px;opacity:0;transition:opacity 0.2s}
+.gate-error.show{opacity:1}
+.gate-card.shake{animation:shake 0.4s ease}
+.gate-note{font-size:11px;color:var(--stone-light);margin-top:28px;letter-spacing:0.3px;line-height:1.6}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes cardSlideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(20px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+@media(max-width:640px){
+  .hero{padding:36px 16px 20px}
+  .hero h1{font-size:30px}
+  .dash-header{padding:10px 16px}
+  .dash-count{display:none}
+  .section-header{padding:0 16px;margin:22px auto 12px}
+  .section-header h2{font-size:18px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:0 16px 40px}
+  .card-av{width:58px;height:58px;font-size:18px}
+  .card .name{font-size:14px}
+  .modal{border-radius:18px}
+  .modal-head{padding:30px 20px 18px}
+  .modal-body,.modal-actions{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+<main id="root"></main>
+<script>
+const EVENT = {
+  name: 'Founder Curious',
+  date: 'April 16, 2026',
+  location: 'SOMA, San Francisco',
+};
+
+let PEOPLE = null;
+const ENCRYPTED_DATA = "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";
+
+const LS_ME = 'fc_me';
+const LS_STARS = (id) => `fc_stars_${id}`;
+
+const state = {
+  meId: localStorage.getItem(LS_ME) || null,
+  stars: new Set(),
+  openModal: null,
+};
+
+function loadStars(){
+  if (!state.meId){ state.stars = new Set(); return; }
+  try {
+    state.stars = new Set(JSON.parse(localStorage.getItem(LS_STARS(state.meId)) || '[]'));
+  } catch { state.stars = new Set(); }
+}
+function saveStars(){
+  if (!state.meId) return;
+  localStorage.setItem(LS_STARS(state.meId), JSON.stringify([...state.stars]));
+}
+
+function initials(name){
+  return name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join('').toUpperCase();
+}
+
+function personById(id){ return PEOPLE.find(p => p.id === id); }
+
+function toggleStar(id){
+  if (!state.meId || id === state.meId) return;
+  if (state.stars.has(id)) state.stars.delete(id);
+  else state.stars.add(id);
+  saveStars();
+  render();
+}
+
+function claim(id){
+  state.meId = id;
+  localStorage.setItem(LS_ME, id);
+  loadStars();
+  state.openModal = null;
+  render();
+}
+function unclaim(){
+  state.meId = null;
+  localStorage.removeItem(LS_ME);
+  state.stars = new Set();
+  render();
+}
+
+function avatarStyle(p){
+  return p.photo ? `background-image:url('images/${p.photo}')` : '';
+}
+
+function el(tag, attrs, ...children){
+  const n = document.createElement(tag);
+  for (const k in (attrs||{})){
+    const v = attrs[k];
+    if (k === 'class') n.className = v;
+    else if (k === 'style') n.setAttribute('style', v);
+    else if (k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (v === true) n.setAttribute(k, '');
+    else if (v !== false && v != null) n.setAttribute(k, v);
+  }
+  for (const c of children.flat()){
+    if (c == null || c === false) continue;
+    n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  }
+  return n;
+}
+
+function starIcon(filled){
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox','0 0 24 24');
+  svg.setAttribute('fill', filled ? 'currentColor' : 'none');
+  svg.setAttribute('stroke','currentColor');
+  svg.setAttribute('stroke-width','2');
+  svg.setAttribute('stroke-linecap','round');
+  svg.setAttribute('stroke-linejoin','round');
+  const path = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  path.setAttribute('points','12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2');
+  svg.appendChild(path);
+  return svg;
+}
+
+function linkIcon(){
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox','0 0 24 24');
+  svg.setAttribute('fill','none');
+  svg.setAttribute('stroke','currentColor');
+  svg.setAttribute('stroke-width','2');
+  svg.setAttribute('stroke-linecap','round');
+  svg.setAttribute('stroke-linejoin','round');
+  svg.innerHTML = '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>';
+  return svg;
+}
+
+function renderHero(){
+  return el('section', {class:'hero'},
+    el('div',{class:'hero-eyebrow'}, 'a16z \u00b7 Founder Curious'),
+    el('h1', {}, EVENT.name),
+    el('div', {class:'subtitle'}, EVENT.date),
+    el('div', {class:'meta'}, EVENT.location),
+    !state.meId && el('div', {class:'claim-banner', style:'margin-top:22px'},
+      el('span', {}, 'Welcome \u2014 tap your name below to '),
+      el('strong', {}, 'claim your profile'),
+    ),
+  );
+}
+
+function renderDashHeader(){
+  if (!state.meId) return null;
+  const me = personById(state.meId);
+  if (!me) return null;
+  return el('header', {class:'dash-header'},
+    el('div', {class:'dash-left'},
+      el('div', {class:'dash-av', style:avatarStyle(me)}, !me.photo && initials(me.name)),
+      el('div', {class:'dash-info'},
+        el('div', {class:'label'}, 'You'),
+        el('div', {class:'you'}, me.name),
+      ),
+    ),
+    el('div', {class:'dash-right'},
+      el('div', {class:'dash-count'},
+        el('strong', {}, String(state.stars.size)),
+        ' starred',
+      ),
+      el('button', {class:'dash-change', onclick: unclaim}, 'change'),
+    ),
+  );
+}
+
+function renderCard(p, i){
+  const isMe = state.meId === p.id;
+  const isStarred = state.stars.has(p.id);
+  const classes = ['card'];
+  if (isMe) classes.push('is-me');
+  if (isStarred && !isMe) classes.push('is-starred');
+
+  const children = [];
+  if (p.host && !isMe) children.push(el('div', {class:'card-badge'}, 'Host'));
+  if (isMe) children.push(el('div', {class:'card-you-badge'}, 'You'));
+
+  if (state.meId && !isMe){
+    const btn = el('button', {
+      class:'star-btn' + (isStarred ? ' active' : ''),
+      title: isStarred ? 'Starred' : 'Star',
+      'aria-label': isStarred ? 'Remove star' : 'Add star',
+      onclick: (e) => { e.stopPropagation(); toggleStar(p.id); },
+    });
+    btn.appendChild(starIcon(isStarred));
+    children.push(btn);
+  }
+
+  children.push(
+    el('div', {class:'card-av', style:avatarStyle(p)}, !p.photo && initials(p.name)),
+    el('div', {class:'name'}, p.name),
+    el('div', {class:'role'}, p.role || ''),
+    el('div', {class:'view-link'}, 'View profile'),
+  );
+
+  const card = el('div', {
+    class: classes.join(' '),
+    style: `animation-delay:${Math.min(i*0.02, 0.4)}s`,
+    onclick: () => { state.openModal = p.id; render(); },
+  }, ...children);
+
+  return card;
+}
+
+function renderGrid(){
+  const hosts = PEOPLE.filter(p => p.host);
+  const guests = PEOPLE.filter(p => !p.host);
+  const starredGuests = guests.filter(p => state.stars.has(p.id));
+  const unstarredGuests = guests.filter(p => !state.stars.has(p.id));
+  const hasStarred = !!state.meId && starredGuests.length > 0;
+  const remainingGuests = hasStarred ? unstarredGuests : guests;
+  const plural = (n) => n === 1 ? 'person' : 'people';
+
+  const sections = [
+    el('div', {class:'section-header'},
+      el('h2', {}, 'Hosts'),
+      el('div', {class:'count'}, `${hosts.length} ${plural(hosts.length)}`),
+    ),
+    el('div', {class:'grid'}, ...hosts.map((p, i) => renderCard(p, i))),
+  ];
+
+  if (hasStarred){
+    sections.push(
+      el('div', {class:'section-header'},
+        el('h2', {}, 'Starred'),
+        el('div', {class:'count'}, `${starredGuests.length} ${plural(starredGuests.length)}`),
+      ),
+      el('div', {class:'grid'}, ...starredGuests.map((p, i) => renderCard(p, i))),
+    );
+  }
+
+  sections.push(
+    el('div', {class:'section-header'},
+      el('h2', {}, 'Guests'),
+      el('div', {class:'count'}, `${remainingGuests.length} ${plural(remainingGuests.length)}`),
+    ),
+    el('div', {class:'grid'}, ...remainingGuests.map((p, i) => renderCard(p, i))),
+  );
+
+  return el('div', {}, ...sections);
+}
+
+function renderModal(){
+  if (!state.openModal) return null;
+  const p = personById(state.openModal);
+  if (!p) return null;
+  const isMe = state.meId === p.id;
+  const isStarred = state.stars.has(p.id);
+  const canClaim = !state.meId;
+
+  const close = () => { state.openModal = null; render(); };
+
+  const actions = [];
+  if (canClaim){
+    actions.push(el('button', {class:'btn-primary', onclick: () => claim(p.id)}, 'This is me \u2014 claim profile'));
+    actions.push(el('button', {class:'btn-secondary', onclick: close}, 'Close'));
+  } else if (isMe){
+    actions.push(el('button', {class:'btn-secondary', onclick: close}, 'Close'));
+  } else {
+    const btn = el('button', {
+      class: 'btn-star' + (isStarred ? ' active' : ''),
+      onclick: () => { toggleStar(p.id); state.openModal = null; render(); },
+    });
+    btn.appendChild(starIcon(isStarred));
+    btn.appendChild(document.createTextNode(isStarred ? 'Starred \u2014 tap to remove' : 'Star \u2014 confirmed attending'));
+    actions.push(btn);
+    actions.push(el('button', {class:'btn-secondary', onclick: close}, 'Close'));
+  }
+
+  const linkA = p.linkedin
+    ? el('a', {class:'modal-link', href:p.linkedin, target:'_blank', rel:'noopener'},
+        linkIcon(),
+        el('span', {}, 'LinkedIn'))
+    : null;
+
+  const overlay = el('div', {class:'modal-overlay', onclick: close},
+    el('div', {class:'modal', onclick: (e)=>e.stopPropagation()},
+      el('button', {class:'modal-close', 'aria-label':'Close', onclick: close}, '\u00d7'),
+      el('div', {class:'modal-head'},
+        el('div', {class:'modal-av', style:avatarStyle(p)}, !p.photo && initials(p.name)),
+        el('h3', {}, p.name),
+        el('div', {class:'role'}, p.role || ''),
+        p.host && el('div', {class:'host-tag'}, 'Host'),
+      ),
+      el('div', {class:'modal-body'},
+        el('div', {class:'modal-label'}, 'About'),
+        el('div', {class:'modal-bio'}, p.bio || ''),
+        linkA,
+      ),
+      el('div', {class:'modal-actions'}, ...actions),
+    ),
+  );
+  return overlay;
+}
+
+function renderFooter(){
+  return el('footer', {class:'footer'},
+    el('span', {}, EVENT.name),
+    ' \u00b7 ',
+    EVENT.date,
+  );
+}
+
+function render(){
+  const root = document.getElementById('root');
+  root.innerHTML = '';
+  const header = renderDashHeader();
+  if (header) root.appendChild(header);
+  root.appendChild(renderHero());
+  root.appendChild(renderGrid());
+  root.appendChild(renderFooter());
+  const modal = renderModal();
+  if (modal) root.appendChild(modal);
+}
+
+// ===== Passcode gate + decryption =====
+const LS_PW = 'fc_pw_v1';
+
+async function deriveKey(passcode, salt){
+  const pwKey = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(passcode), {name:'PBKDF2'}, false, ['deriveKey']
+  );
+  return crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:120000, hash:'SHA-256'},
+    pwKey, {name:'AES-GCM', length:256}, false, ['decrypt']
+  );
+}
+
+async function tryDecrypt(passcode){
+  const raw = Uint8Array.from(atob(ENCRYPTED_DATA), c => c.charCodeAt(0));
+  const salt = raw.slice(0, 16);
+  const iv = raw.slice(16, 28);
+  const ctWithTag = raw.slice(28);
+  const key = await deriveKey(passcode, salt);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ctWithTag);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+async function unlock(passcode){
+  try {
+    PEOPLE = await tryDecrypt(passcode);
+    localStorage.setItem(LS_PW, passcode);
+    loadStars();
+    render();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function renderGate(errorMsg){
+  const root = document.getElementById('root');
+  root.innerHTML = '';
+  const input = el('input', {
+    type:'password', class:'gate-input', placeholder:'passcode',
+    autocomplete:'off', spellcheck:'false',
+  });
+  const errEl = el('div', {class:'gate-error' + (errorMsg ? ' show' : '')}, errorMsg || '\u00a0');
+  const btn = el('button', {class:'gate-btn', type:'button'}, 'Unlock');
+  const card = el('div', {class:'gate-card'},
+    el('div', {class:'hero-eyebrow'}, 'a16z \u00b7 Founder Curious'),
+    el('h1', {class:'gate-title'}, EVENT.name),
+    el('div', {class:'gate-subtitle'}, EVENT.date),
+    el('div', {class:'gate-meta'}, EVENT.location),
+    el('div', {class:'gate-form'}, input, btn),
+    errEl,
+    el('div', {class:'gate-note'}, 'Shared with co-hosts only. Ask David for the passcode.'),
+  );
+  const submit = async () => {
+    const val = input.value.trim();
+    if (!val) return;
+    btn.disabled = true;
+    btn.textContent = 'Unlocking\u2026';
+    const ok = await unlock(val);
+    if (!ok){
+      btn.disabled = false;
+      btn.textContent = 'Unlock';
+      renderGate('Incorrect passcode.');
+    }
+  };
+  btn.addEventListener('click', submit);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+  root.appendChild(el('section', {class:'gate'}, card));
+  setTimeout(() => input.focus(), 30);
+}
+
+async function boot(){
+  if (!window.crypto || !window.crypto.subtle){
+    document.getElementById('root').innerHTML =
+      '<div style="padding:60px 24px;text-align:center;font-family:Inter">This browser does not support WebCrypto. Please open in Chrome, Safari, or Firefox.</div>';
+    return;
+  }
+  const saved = localStorage.getItem(LS_PW);
+  if (saved){
+    const ok = await unlock(saved);
+    if (ok) return;
+    localStorage.removeItem(LS_PW);
+  }
+  renderGate();
+}
+
+boot();
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && state.openModal){ state.openModal = null; render(); }
+});
+</script>
+</body>
+</html>
