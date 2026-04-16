@@ -1,8 +1,12 @@
 # Source files with plaintext data — do NOT commit
 _people.source.js
 _build.cjs
+_enrich.cjs
 _encrypt.cjs
 _*.b64
+_apollo_cache.json
+matches_preview.json
+.env
 
 # OS
 .DS_Store
